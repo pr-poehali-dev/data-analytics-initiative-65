@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, image }: SectionProps) {
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
       {subtitle && (
@@ -43,10 +43,24 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
           <Button
             variant="outline"
             size="lg"
-            className="text-[#FF4D00] bg-transparent border-[#FF4D00] hover:bg-[#FF4D00] hover:text-black transition-colors"
+            className="text-[#00C2FF] bg-transparent border-[#00C2FF] hover:bg-[#00C2FF] hover:text-black transition-colors"
           >
             {buttonText}
           </Button>
+        </motion.div>
+      )}
+      {image && (
+        <motion.div
+          className="absolute right-8 md:right-16 lg:right-24 top-1/2 -translate-y-1/2 hidden md:block"
+          initial={{ opacity: 0, x: 60 }}
+          animate={isActive ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <img
+            src={image}
+            alt="CleanBot устройство"
+            className="w-72 lg:w-96 xl:w-[420px] rounded-2xl opacity-90 shadow-[0_0_60px_rgba(0,194,255,0.3)]"
+          />
         </motion.div>
       )}
     </section>
